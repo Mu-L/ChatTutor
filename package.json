@@ -7,9 +7,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@chat-tutor/agent": "workspace:*",
+    "@chat-tutor/canvas": "workspace:*",
     "@fortawesome/fontawesome-svg-core": "^7.0.0",
     "@fortawesome/free-brands-svg-icons": "^7.0.0",
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
@@ -19,14 +25,16 @@
     "@nuxt/eslint": "1.10.0",
     "@nuxt/ui": "4.1.0",
     "@unocss/reset": "^66.5.4",
-    "@chat-tutor/agent": "workspace:*",
-    "@chat-tutor/canvas": "workspace:*",
     "better-sqlite3": "^12.4.1",
+    "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.6",
+    "drizzle-orm": "^0.44.7",
     "eslint": "^9.39.1",
     "jsxgraph": "^1.12.0",
     "katex": "^0.16.25",
     "mermaid": "^11.12.1",
     "nuxt": "^4.2.0",
+    "pg": "^8.16.3",
     "shiki": "^3.14.0",
     "stream-monaco": "^0.0.2",
     "typescript": "^5.9.3",
@@ -35,6 +43,7 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@types/pg": "^8.15.6",
     "@unocss/nuxt": "^66.5.4",
     "eslint-plugin-vue": "^10.5.1",
     "typescript-eslint": "^8.46.3",

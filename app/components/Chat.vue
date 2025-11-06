@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import { MarkdownRender } from 'vue-renderer-markdown'
-
-type UserMessage = {
-  type: 'user'
-  content: string
-}
-type AssistantMessage = {
-  type: 'assistant'
-  content: string
-}
-export type Message = (UserMessage | AssistantMessage) & { id: string }
+import type { Message } from '#shared/types'
 
 defineProps<{
   messages: Message[]

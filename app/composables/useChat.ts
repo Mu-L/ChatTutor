@@ -1,4 +1,4 @@
-import type { Message } from '@/components/Chat.vue'
+import type { Message } from '#shared/types'
 
 export const useChat = () => {
   const messages = ref<Message[]>([])
