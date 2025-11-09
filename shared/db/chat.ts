@@ -12,7 +12,7 @@ export const chat = pgTable('chat', {
   context: jsonb('context').notNull().default(
     JSON.stringify({
       agent: [],
-      painter: [],
+      painter: {},
     } satisfies Context)
   ),
 

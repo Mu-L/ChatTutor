@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
   }
 
   context.agent ??= []
-  context.painter ??= []
+  context.painter ??= {}
 
   updateStatus(Status.RUNNING)
   messages.push({

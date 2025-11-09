@@ -1,18 +1,23 @@
 import type { FullizeAction, Page } from '@chat-tutor/shared'
 import { PageType } from '@chat-tutor/shared'
-import type { Tool } from 'xsai'
+import type { Tool, Message } from 'xsai'
 import { tool } from 'xsai'
 import { type } from 'arktype'
 import type { CanvasPage, CanvasPageAction } from '@chat-tutor/canvas'
 import type { MermaidPage, MermaidPageAction } from '@chat-tutor/mermaid'
-import { createPainterAgent, type PainterAgentOptions } from '../painter'
+import { createPainterAgent } from '../painter'
 import type { AgentChunker } from '../types'
 import type { PageCreationAction, PageNoteAction } from '..'
 
 export const getAgentTools = async (
   { pages, painterOptions, chunker }: {
     pages: Page[]
-    painterOptions: Omit<PainterAgentOptions, 'page'>
+    painterOptions: {
+      apiKey: string
+      baseURL: string
+      model: string
+      messages: Record<string, Message[]>
+    }
     chunker: AgentChunker
   }
 ) => {
@@ -172,8 +177,10 @@ export const getAgentTools = async (
           message: 'Page not found',
         }
       }
+      painterOptions.messages[targetPage.id!] ??= []
       const painter = createPainterAgent({
         ...painterOptions,
+        messages: painterOptions.messages[targetPage.id!],
         page: targetPage as CanvasPage,
       })
       const result = await painter(input, (chunk) => {

@@ -10,7 +10,7 @@ export default defineEventHandler(async () => {
       messages: [],
       context: {
         agent: [],
-        painter: [],
+        painter: {},
       } satisfies Context,
       status: Status.PENDING,
       pages: [],

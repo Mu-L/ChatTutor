@@ -1,4 +1,4 @@
-import { message, streamText } from 'xsai'
+import { message, streamText, type Message } from 'xsai'
 import { agent } from './prompts'
 import { getAgentTools } from './tools'
 import type { Action, FullAction, Page } from '@chat-tutor/shared'
@@ -11,7 +11,12 @@ export type PageNoteAction = FullAction<{ content: string }, 'note'>
 
 export interface AgentOptions extends BaseAgentOptions {
   pages: Page[]
-  painter: BaseAgentOptions
+  painter: {
+    apiKey: string
+    baseURL: string
+    model: string
+    messages: Record<string, Message[]>
+  }
 }
 
 export const createAgent = (options: AgentOptions) => {
