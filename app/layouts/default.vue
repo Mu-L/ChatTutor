@@ -3,10 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faBars, faAdd } from '@fortawesome/free-solid-svg-icons'
 
 const route = useRouter().currentRoute
+const width: Ref<number | null> = ref(null)
 
-const collapsed = ref(route.value.path === '/')
-watch(route, (r) => {
-  collapsed.value = r.path === '/'
+const collapsed = ref(false)
+onMounted(() => {
+  width.value = window.innerWidth
+  watch(route, (r) => {
+    collapsed.value = r.path === '/' && width.value! > 768
+  }, { immediate: true })
 })
 
 type Chat = {
@@ -30,8 +34,8 @@ void (async () => {
 <template>
   <div class="min-h-screen w-full bg-gray-50 flex flex-row">
     <div
-      class="h-screen bg-gray-200 max-h-screen flex flex-col p-5 shadow-lg transition-all duration-300 ease-in-out overflow-hidden"
-      :class="collapsed ? 'w-80' : 'w-20'"
+      class="fixed z-9999 left-0 top-0 md:relative h-screen max-h-screen flex flex-col p-5 transition-all duration-300 ease-in-out overflow-hidden"
+      :class="collapsed ? 'w-4/5 md:w-80 bg-gray-200 shadow-lg' : 'w-20 bg-transparent md:bg-gray-200'"
     >
       <ButtonContainer
         class="size-10 justify-center items-center flex"
@@ -43,6 +47,7 @@ void (async () => {
         <ButtonContainer
           class="flex flex-row w-full items-center justify-center gap-5 cursor-pointer select-none"
           @click="navigateTo('/')"
+          v-show="width! > 768 || collapsed"
         >
           <FontAwesomeIcon :icon="faAdd" />
           <Transition name="fade">
