@@ -1,8 +1,7 @@
-import type { Action, Page, PageType } from '@chat-tutor/shared'
-import type { ElementActionOptions } from './element'
+import type { Page, PageType } from '@chat-tutor/shared'
+import type { ElementAction } from './element'
 
-export type CanvasPageAction = 
-  Action<typeof ElementActionOptions.infer>
+export type CanvasPageAction = ElementAction
 
 export type CanvasPageExtends = {
   range: [number, number] // y axis range
@@ -12,4 +11,3 @@ export type CanvasPageExtends = {
 }
 
 export type CanvasPage = Page<CanvasPageAction, PageType.CANVAS> & CanvasPageExtends
-export type Canvas3DPage = Page<CanvasPageAction> & CanvasPageExtends

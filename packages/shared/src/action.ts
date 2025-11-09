@@ -1,11 +1,4 @@
-import { type } from 'arktype'
-
-export const BaseAction = type({
-  type: 'string',
-  options: type.object
-})
-
-export type Action<T extends object = Record<string, unknown>, A extends string = string> = typeof BaseAction.infer & {
+export type Action<T extends object = Record<string, unknown>, A extends string = string> = {
   type: A
   options: T
 }
@@ -13,3 +6,5 @@ export type Action<T extends object = Record<string, unknown>, A extends string 
 export interface FullAction<T extends object = Record<string, unknown>, A extends string = string> extends Action<T, A> {
   page?: string
 }
+
+export type FullizeAction<T extends Action = Action> = FullAction<T['options'], T['type']>

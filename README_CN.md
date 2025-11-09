@@ -58,9 +58,14 @@ cp .env.example .env
 
 在 `.env` 文件中填写你的配置信息：
 
-- `MODELS`: 要使用的模型，使用逗号 `,` 分隔多个模型。
+> [!NOTE]
+>
+> ChatTutor 采用了 **多 Agent 架构**，其中 ***Agent*** 代表与用户交互的 Agent，而 ***Painter*** 则是一个专门用于绘制数学图形的专家 Agent。
+
 - `API_KEY`: 所使用的 API 密钥。
 - `BASE_URL`: 接口基础地址。
+- `AGENT_MODEL`: 用于 Agent 的模型。
+- `PAINTER_MODEL`: 用于 Painter 的模型。建议使用 `claude-sonnet-4.5`
 - `DATABASE_URL`: Postgres 数据库连接地址。
 
 ### 初始化

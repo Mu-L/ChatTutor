@@ -1,10 +1,4 @@
-import { BaseAction } from '@chat-tutor/shared'
-import { type } from 'arktype'
+import type { Action } from '@chat-tutor/shared'
 
-export const MermaidPageSetActionOptions = type({
-  content: 'string',
-})
-
-export const MermaidPageSetAction = type.and(BaseAction, type({
-  options: MermaidPageSetActionOptions
-}))
+export type MermaidPageSetAction = Action<{ content: string }, 'set-mermaid'>
+export type MermaidPageAction = MermaidPageSetAction

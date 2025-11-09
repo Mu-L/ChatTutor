@@ -58,9 +58,14 @@ cp .env.example .env
 
 Fill your config in `.env` file.
 
-- `MODELS`: The models to use, use ',' to divide models.
+> [!NOTE]
+>
+> ChatTutor employs a **Multi-agent** architecture, where ***Agent*** represents the agent that chats with the user, and ***Painter*** is an expert agent for drawing mathematical graphs.
+
 - `API_KEY`: The API key to use.
 - `BASE_URL`: The base URL to use.
+- `AGENT_MODEL`: The model to use for the agent.
+- `PAINTER_MODEL`: The model to use for the painter. Suggest: `claude-sonnet-4.5`
 - `DATABASE_URL`: The Postgres URL to use.
 
 ### Initialize

@@ -1,3 +1,3 @@
 export * from './page'
-export * from './action'
+export type { MermaidPageAction } from './action'
 export * from './render'

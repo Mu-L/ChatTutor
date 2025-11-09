@@ -1,5 +1,6 @@
 import mermaid from 'mermaid'
-import type { MermaidPageAction } from './page'
+import type { FullizeAction } from '@chat-tutor/shared'
+import type { MermaidPageAction } from './action'
 
 export const createMermaidRenderer = (
   container: HTMLElement,
@@ -11,13 +12,12 @@ export const createMermaidRenderer = (
 
   const content: string[] = []
 
-  const load = (actions: MermaidPageAction[]) => {
+  const load = (actions: FullizeAction<MermaidPageAction>[]) => {
     for (const action of actions) {
       if (action.type === 'set-mermaid') {
         content.length = 0
         content.push(action.options.content)
       }
-      console.log('load', content.join('\n\n'))
       mermaid.render(`${container.id}-mermaid`, content.join('\n\n')).then((result) => {
         container.innerHTML = result.svg
       })
