@@ -2,7 +2,7 @@
 import { MarkdownRender } from 'vue-renderer-markdown'
 
 const { handleAction, board, loadPages, currentPages, page, notes } = useBoard()
-const { messages, input, send, loadMessages } = useChat(handleAction)
+const { messages, input, send, loadMessages, running } = useChat(handleAction)
 const promptAreaRef = ref()
 
 const route = useRoute()
@@ -66,8 +66,8 @@ onMounted(() => {
         ref="promptAreaRef"
         v-model:input="input"
         :messages="messages"
+        :running="running"
         @send="handleSend"
-        @keydown.enter="handleSend"
       />
     </div>
   </div>

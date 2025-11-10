@@ -13,11 +13,13 @@ export const useChat = (
 ) => {
   const messages = ref<Message[]>([])
   const input = ref('')
+  const running = ref(false)
   const { params } = useRoute()
   const id = params.id as string
   let eventSource: EventSource | null = null
 
   const send = async () => {
+    running.value = true
     const i = input.value
     input.value = ''
     if (eventSource) {
@@ -63,6 +65,7 @@ export const useChat = (
       if (eventSource) {
         eventSource.close()
         eventSource = null
+        running.value = false
       }
     }
     
@@ -76,6 +79,7 @@ export const useChat = (
       eventSource.close()
       eventSource = null
     }
+    running.value = false
   }
 
   const loadMessages = (msgs: Message[]) => {
@@ -89,6 +93,7 @@ export const useChat = (
   return {
     messages,
     input,
+    running,
     send,
     cleanup,
     loadMessages,

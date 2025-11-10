@@ -73,7 +73,6 @@ export default defineEventHandler(async (event) => {
     }
     await agent(input, send as AgentChunker)
   })().then(async () => {
-    console.log(context)
     await db.update(chat).set({
       context,
       status: Status.COMPLETED,

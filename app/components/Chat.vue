@@ -4,6 +4,7 @@ import type { Message } from '#shared/types'
 
 const props = defineProps<{
   messages: Message[]
+  running: boolean
 }>()
 
 const input = defineModel<string>('input', { required: true })
@@ -95,6 +96,7 @@ onUnmounted(() => {
       <PromptArea
         ref="promptAreaRef"
         v-model:input="input"
+        :running="running"
       />
     </div>
   </div>

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 const input = ref('')
+const running = ref(false)
 
 const create = async () => {
+  running.value = true
   const { id } = await $fetch<{ id: string }>('/api/chat/create', {
     method: 'POST',
   })
+  running.value = false
   navigateTo(`/chat/${id}?input=${input.value}`)
 }
 </script>
@@ -23,7 +26,7 @@ const create = async () => {
       </h1>
       <div class="w-full flex flex-col h-full justify-end md:justify-center items-center mb-auto">
         <div class="flex justify-end px-10 w-full md:max-w-200 h-35">
-          <PromptArea v-model:input="input" @keydown.enter="create" @send="create" />
+          <PromptArea :running="running" v-model:input="input" @send="create" />
         </div>
       </div>
     </div>
