@@ -98,6 +98,11 @@ pnpm dev
 - [xsai](https://github.com/moeru-ai/xsai): Extra-small AI SDK.
 - [jsxgraph](https://jsxgraph.org/): Interactive geometry, function plotting, and data visualization library.
 
+## Sponsors
+Our sponsors are listed as follows (in no particular order):
+
+- [AiHubMix](https://aihubmix.com/): Open model hub for AI.
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sheepbox8646/ChatTutor&type=date&legend=top-left)](https://www.star-history.com/#sheepbox8646/ChatTutor&type=date&legend=top-left)

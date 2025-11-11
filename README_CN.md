@@ -97,6 +97,11 @@ pnpm dev
 - [xsai](https://github.com/moeru-ai/xsai): 轻量级 AI SDK。
 - [jsxgraph](https://jsxgraph.org/): 交互式几何、函数绘图与数据可视化库。
 
+## 赞助商
+我们的赞助商列表如下（排名不分先后）：
+
+- [AiHubMix](https://aihubmix.com/): 开放模型API平台。
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=sheepbox8646/ChatTutor&type=date&legend=top-left)](https://www.star-history.com/#sheepbox8646/ChatTutor&type=date&legend=top-left)
