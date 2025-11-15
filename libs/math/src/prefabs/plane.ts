@@ -1,5 +1,5 @@
 import { tag } from '@dsl/utils-canvas'
-import { definePrefab, type Ref, ref, registerPrefab } from '@dsl/renderer-core'
+import { definePrefab, ref, registerPrefab } from '@dsl/renderer-core'
 import type { Vector2 } from '../utils'
 import { theme } from '@dsl/utils-theme'
 
