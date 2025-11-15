@@ -32,27 +32,27 @@ const { baseURL, apiKey, agentModel, painterModel, titleModel, saveBaseURL, save
             type="password"
             label="API Key"
             description="The information is stored in your browser's local storage."
-            v-model="apiKey"
+            :model="apiKey"
             @save="saveAPIKey"
           />
           <InputArea
             type="text"
             label="Agent Model"
-            v-model="agentModel"
+            :model="agentModel"
             @save="saveAgentModel"
           />
           <InputArea
             type="text"
             label="Painter Model"
             description="Optional, default to the same as Agent Model."
-            v-model="painterModel"
+            :model="painterModel"
             @save="savePainterModel"
           />
           <InputArea
             type="text"
             label="Title Model"
             description="Optional, default to the same as Agent Model."
-            v-model="titleModel"
+            :model="titleModel"
             @save="saveTitleModel"
           />
         </div>
