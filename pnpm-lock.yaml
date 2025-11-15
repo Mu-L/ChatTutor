@@ -127,6 +127,32 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0(eslint@9.39.1(jiti@2.6.1))
 
+  libs/example: {}
+
+  libs/math:
+    dependencies:
+      '@dsl/knowledge':
+        specifier: workspace:*
+        version: link:../../packages-dsl/knowledge
+      '@dsl/renderer-core':
+        specifier: workspace:*
+        version: link:../../packages-dsl/renderer-core
+      '@dsl/utils-canvas':
+        specifier: workspace:*
+        version: link:../utils-canvas
+      '@dsl/utils-theme':
+        specifier: workspace:*
+        version: link:../utils-theme
+      katex:
+        specifier: ^0.16.25
+        version: 0.16.25
+
+  libs/theme-default: {}
+
+  libs/utils-canvas: {}
+
+  libs/utils-theme: {}
+
   packages-dsl/animation:
     dependencies:
       '@dsl/renderer-core':
@@ -154,6 +180,9 @@ importers:
       '@dsl/knowledge':
         specifier: workspace:*
         version: link:../knowledge
+      '@dsl/math':
+        specifier: workspace:*
+        version: link:../../libs/math
       '@dsl/renderer-core':
         specifier: workspace:*
         version: link:../renderer-core
@@ -162,10 +191,13 @@ importers:
         version: link:../renderer-runtime
       '@dsl/theme-default':
         specifier: workspace:*
-        version: link:../theme-default
+        version: link:../../libs/theme-default
+      '@dsl/utils-canvas':
+        specifier: workspace:*
+        version: link:../../libs/utils-canvas
       '@dsl/utils-theme':
         specifier: workspace:*
-        version: link:../utils-theme
+        version: link:../../libs/utils-theme
       '@unocss/preset-wind4':
         specifier: ^66.5.2
         version: 66.5.4
@@ -247,10 +279,6 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
-
-  packages-dsl/theme-default: {}
-
-  packages-dsl/utils-theme: {}
 
   packages-dsl/x:
     dependencies:

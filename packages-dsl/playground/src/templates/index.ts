@@ -1,11 +1,15 @@
-import type { RootDocument } from '@dsl/renderer-core'
+import { math } from './math'
 
 export type Template = {
   id: string
-  content?: RootDocument | string
+  content?: string
   templates?: Template[]
+  type: 'html' | 'svg'
 }
 
 export default [
-  
+  {
+    id: 'math',
+    templates: math
+  }
 ] as Template[]

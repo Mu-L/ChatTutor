@@ -19,6 +19,8 @@
     "@dsl/renderer-runtime": "workspace:*",
     "@dsl/theme-default": "workspace:*",
     "@dsl/utils-theme": "workspace:*",
+    "@dsl/utils-canvas": "workspace:*",
+    "@dsl/math": "workspace:*",
     "@unocss/preset-wind4": "^66.5.2",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.8.1",
