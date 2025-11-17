@@ -37,10 +37,33 @@ ChatTutor 有效地解决了这一问题。它将现实教育场景中的各种�
 ## Features
 
 - [x] 数学画板
-![数学画板](./public/demo1.png)
+<table>
+  <tr>
+    <td>
+      <img src="./public/demo1.png" alt="Math Canvas" width="100%" />
+    </td>
+    <td>
+      <img src="./public/demo2.png" alt="Math Canvas" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./public/demo3.png" alt="Math Canvas" width="100%" />
+    </td>
+  </tr>
+</table>
 - [ ] 代码页面
 - [x] 思维导图
-![思维导图](./public/demo2.png)
+<table>
+  <tr>
+    <td>
+      <img src="./public/demo4.png" alt="Mindmap" width="100%" />
+    </td>
+    <td>
+      <img src="./public/demo5.png" alt="Mindmap" width="100%" />
+    </td>
+  </tr>
+</table>
 - [ ] 物理画板
 - [ ] 数字逻辑画板
 - [ ] AI 为用户自动生成题目与解答

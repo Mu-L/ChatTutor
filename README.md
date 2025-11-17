@@ -37,10 +37,33 @@ ChatTutor effectively solves this problem by bringing all the teaching tools use
 ## Features
 
 - [x] Math Canvas
-![Math Canvas](./public/demo1.png)
+<table>
+  <tr>
+    <td>
+      <img src="./public/demo1.png" alt="Math Canvas" width="100%" />
+    </td>
+    <td>
+      <img src="./public/demo2.png" alt="Math Canvas" width="100%" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="./public/demo3.png" alt="Math Canvas" width="100%" />
+    </td>
+  </tr>
+</table>
 - [ ] Code Page
 - [x] Mindmap
-![Mindmap](./public/demo2.png)
+<table>
+  <tr>
+    <td>
+      <img src="./public/demo4.png" alt="Mindmap" width="100%" />
+    </td>
+    <td>
+      <img src="./public/demo5.png" alt="Mindmap" width="100%" />
+    </td>
+  </tr>
+</table>
 - [ ] Physics Canvas
 - [ ] Digital Logic Canvas
 - [ ] Problem Solving created by AI to user
