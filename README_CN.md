@@ -53,8 +53,7 @@ ChatTutor 有效地解决了这一问题。它将现实教育场景中的各种�
 ### 环境要求
 
 - Node.js >= 20
-- Postgres
-- PNPM
+- Docker
 
 ### 环境变量配置
 
@@ -83,17 +82,13 @@ cp .env.example .env
 - `OSS_SECRET_KEY`: 对象存储服务的秘密密钥。
 - `OSS_BUCKET`: 对象存储服务的桶。
 - `OSS_REGION`: 对象存储服务的区域。(可选)
-### 初始化
+
+### 运行
 
 ```bash
-pnpm i
-pnpm db:push # 初始化数据库
-```
-
-### Run
-
-```bash
-pnpm dev
+git clone https://github.com/sheepbox8646/ChatTutor.git
+cd ChatTutor
+docker compose up -d
 ```
 
 ## 核心功能所用项目

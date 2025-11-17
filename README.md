@@ -53,8 +53,7 @@ Please refer to our [Roadmap v0.1](https://github.com/sheepbox8646/ChatTutor/iss
 ### Environment
 
 - Node.js >= 20
-- Postgres
-- PNPM
+- Docker
 
 ### Environment Variables
 
@@ -84,17 +83,12 @@ Fill your config in `.env` file.
 - `OSS_BUCKET`: The OSS bucket to use.
 - `OSS_REGION`: The OSS region to use. (optional)
 
-### Initialize
-
-```bash
-pnpm i
-pnpm db:push # Init
-```
-
 ### Run
 
 ```bash
-pnpm dev
+git clone https://github.com/sheepbox8646/ChatTutor.git
+cd ChatTutor
+docker compose up -d
 ```
 
 ## Projects Used on Core Features
