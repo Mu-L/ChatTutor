@@ -24,5 +24,10 @@ export const system = () => {
 
   ## Output
   ${shared.output()}
+
+  ## Notices
+  ${shared.notices()}
+
+  **WARNING**: A document should **ONLY** contain one root element, and the root element **MUST** be a \`<plane>\` element.
   `.trim()
 }

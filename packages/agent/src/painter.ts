@@ -1,8 +1,6 @@
-import type { CanvasPage } from '@chat-tutor/canvas'
 import type { AgentChunker, BaseAgentOptions } from './types'
 import { generateText, message, streamText, type StreamTextEvent } from 'xsai'
 import { painter } from './prompts'
-import type { ReadableStream } from 'node:stream/web'
 
 const parse = (content: string) => {
   const doc = content
@@ -27,8 +25,7 @@ export const createPainterAgent = (options: PainterAgentOptions) => {
   }
 
   return async (
-    input: string,
-    chunker: AgentChunker
+    input: string
   ): Promise<string> => {
     options.messages.push(message.user(input))
     const { text, messages } = await generateText({

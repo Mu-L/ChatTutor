@@ -11,9 +11,7 @@ describe('Painter Agent', () => {
       apiKey: process.env.API_KEY!,
       baseURL: process.env.BASE_URL!,
     })
-    const result = await agent('Draw a simple triangle, A = (0, 0), B = (3, 4), C = (1, 2)', (chunk) => {
-      // console.log(chunk)
-    })
+    const result = await agent('Draw a simple triangle, A = (0, 0), B = (3, 4), C = (1, 2)')
     console.log(result)
     // expect(result).toBeTypeOf('string')
     expect(result).toMatchFileSnapshot(`__snapshots__/painter.test.md`)

@@ -26,6 +26,27 @@ importers:
       '@chat-tutor/shared':
         specifier: workspace:*
         version: link:packages/shared
+      '@dsl/knowledge':
+        specifier: workspace:*
+        version: link:packages-dsl/knowledge
+      '@dsl/math':
+        specifier: workspace:*
+        version: link:libs/math
+      '@dsl/renderer-core':
+        specifier: workspace:*
+        version: link:packages-dsl/renderer-core
+      '@dsl/renderer-runtime':
+        specifier: workspace:*
+        version: link:packages-dsl/renderer-runtime
+      '@dsl/theme-default':
+        specifier: workspace:*
+        version: link:libs/theme-default
+      '@dsl/utils-canvas':
+        specifier: workspace:*
+        version: link:libs/utils-canvas
+      '@dsl/utils-theme':
+        specifier: workspace:*
+        version: link:libs/utils-theme
       '@fortawesome/fontawesome-svg-core':
         specifier: ^7.0.0
         version: 7.1.0
