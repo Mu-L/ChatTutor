@@ -14,10 +14,9 @@ describe('Painter Agent', () => {
     const result = await agent('Draw a simple triangle, A = (0, 0), B = (3, 4), C = (1, 2)', (chunk) => {
       // console.log(chunk)
     })
-    const id = crypto.randomUUID()
     console.log(result)
     // expect(result).toBeTypeOf('string')
-    expect(result).toMatchFileSnapshot(`__snapshots__/painter.test.${id}.md`)
-    expect(messages).toMatchFileSnapshot(`__snapshots__/painter.test.${id}.messages.json`)
+    expect(result).toMatchFileSnapshot(`__snapshots__/painter.test.md`)
+    expect(messages).toMatchFileSnapshot(`__snapshots__/painter.test.messages.json`)
   })
 })

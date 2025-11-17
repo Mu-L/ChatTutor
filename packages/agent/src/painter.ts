@@ -1,8 +1,19 @@
 import type { CanvasPage } from '@chat-tutor/canvas'
 import type { AgentChunker, BaseAgentOptions } from './types'
-import { message, streamText, type StreamTextEvent } from 'xsai'
+import { generateText, message, streamText, type StreamTextEvent } from 'xsai'
 import { painter } from './prompts'
 import type { ReadableStream } from 'node:stream/web'
+
+const parse = (content: string) => {
+  const doc = content
+    .match(/```document[\s\S]*?```/gm)?.[0] ?? ''
+  console.log(doc)
+  
+  return doc
+    .replace(/```document/, '')
+    .replace('```', '')
+    .trim()
+}
 
 export interface PainterAgentOptions extends BaseAgentOptions {
   // page: CanvasPage
@@ -20,16 +31,14 @@ export const createPainterAgent = (options: PainterAgentOptions) => {
     chunker: AgentChunker
   ): Promise<string> => {
     options.messages.push(message.user(input))
-    const { fullStream, messages } = streamText({
+    const { text, messages } = await generateText({
       model: options.model,
       apiKey: options.apiKey,
       baseURL: options.baseURL,
-      messages: options.messages,
-      maxSteps: 4,
+      messages: options.messages
     })
-    const msgs = await messages
     options.messages.length = 0
-    options.messages.push(...msgs)
-    return msgs[msgs.length - 1].content as string
+    options.messages.push(...messages)
+    return parse(text ?? '')
   }
 }
