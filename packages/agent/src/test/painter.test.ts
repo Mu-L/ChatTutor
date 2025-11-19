@@ -19,7 +19,7 @@ describe('Painter Agent', () => {
     })
     console.log(result)
     // expect(result).toBeTypeOf('string')
-    expect(result).toMatchFileSnapshot('__snapshots__/painter.test.md')
+    expect(result.content).toMatchFileSnapshot('__snapshots__/painter.test.md')
     expect(messages).toMatchFileSnapshot('__snapshots__/painter.test.messages.json')
   })
 })

@@ -1,4 +1,4 @@
-import type { Action, FullizeAction, Page, SliderForm } from '@chat-tutor/shared'
+import type { Action, BaseForm, FullizeAction, Page, SliderForm } from '@chat-tutor/shared'
 import { FormType, PageType } from '@chat-tutor/shared'
 import type { Tool, Message } from 'xsai'
 import { tool } from 'xsai'
@@ -17,6 +17,7 @@ export type CanvasPageDrawEndAction = Action<{
   page: string
   result: string
 }, 'draw-end'>
+export type FormCreationAction<T extends BaseForm<FormType> = BaseForm<FormType>> = Action<T, 'form-creation'>
 
 export const getAgentTools = async (
   { pages, painterOptions, chunker }: {
@@ -100,6 +101,18 @@ export const getAgentTools = async (
         step,
         value,
       } as SliderForm)
+      const action: FormCreationAction<SliderForm> = {
+        type: 'form-creation',
+        options: {
+          type: FormType.SLIDER,
+          bind,
+          min,
+          max,
+          step,
+          value,
+        },
+      }
+      chunker(action)
       return {
         success: true,
         message: 'Slider created successfully',
