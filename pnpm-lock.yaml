@@ -346,6 +346,9 @@ importers:
       '@dsl/math':
         specifier: workspace:*
         version: link:../../libs/math
+      '@dsl/x':
+        specifier: workspace:*
+        version: link:../../packages-dsl/x
       '@types/node':
         specifier: ^24.10.0
         version: 24.10.0
