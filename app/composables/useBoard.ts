@@ -11,6 +11,10 @@ export type Page = CanvasPage | MermaidPage
 
 export type ActionHandler = (action: FullAction) => void
 
+export const rendererMap = new Map<string,
+  ReturnType<typeof createRenderer> | ReturnType<typeof createMermaidRenderer>
+>()
+
 export const useBoard = () => {
   const board = ref<HTMLElement | null>(null)
   const currentPages = ref<Page[]>([])
@@ -38,10 +42,6 @@ export const useBoard = () => {
       })
     })
   })
-
-  const rendererMap = new Map<string,
-    ReturnType<typeof createRenderer> | ReturnType<typeof createMermaidRenderer>
-  >()
 
   const loadCanvasPage = (page: CanvasPage) => {
     const container = document.createElement('div')

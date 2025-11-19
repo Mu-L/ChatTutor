@@ -84,8 +84,9 @@ export const getAgentTools = async (
       max: type('number').describe('The maximum value of the slider'),
       step: type('number').describe('The step value of the slider'),
       value: type('number').describe('The initial value of the slider'),
+      title: type('string').describe('The title of the slider'),
     }),
-    execute: async ({ page, bind, min, max, step, value }) => {
+    execute: async ({ page, bind, min, max, step, value, title }) => {
       const targetPage = pages.find(p => p.id === page)
       if (!targetPage) {
         return {
@@ -100,8 +101,9 @@ export const getAgentTools = async (
         max,
         step,
         value,
+        title,
       } as SliderForm)
-      const action: FormCreationAction<SliderForm> = {
+      const action: FullizeAction<FormCreationAction<SliderForm>> = {
         type: 'form-creation',
         options: {
           type: FormType.SLIDER,
@@ -110,7 +112,9 @@ export const getAgentTools = async (
           max,
           step,
           value,
+          title,
         },
+        page: targetPage.id,
       }
       chunker(action)
       return {

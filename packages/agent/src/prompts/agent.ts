@@ -59,6 +59,7 @@ export const system = () => {
     @param \`max\`: The maximum value of the slider.
     @param \`step\`: The step value of the slider (e.g., 0.1 for decimals, 1 for integers).
     @param \`value\`: The initial value of the slider.
+    @param \`title\`: The title of the slider.
     @return \`page\`: The page identifier.
     @return \`bind\`: The reactive variable name bound to the slider.
 

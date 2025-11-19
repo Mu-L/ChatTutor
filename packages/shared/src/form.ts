@@ -5,6 +5,7 @@ export enum FormType {
 export type BaseForm<T extends FormType> = {
   type: T
   bind: string
+  title: string
 }
 
 export type SliderForm = BaseForm<FormType.SLIDER> & {
