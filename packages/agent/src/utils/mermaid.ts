@@ -1,6 +1,6 @@
 import type { BlockResolver } from './blockParser'
 import type { Action, FullizeAction, Page, PageType } from '@chat-tutor/shared'
-import type { PageNoteAction } from '../'
+import type { PageNoteAction } from '../index'
 
 export type MermaidPageSetAction = Action<{ content: string }, 'set-mermaid'>
 export type MermaidPageAction = MermaidPageSetAction

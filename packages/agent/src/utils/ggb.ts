@@ -1,7 +1,9 @@
-import type { Action, FullizeAction } from '@chat-tutor/shared'
+import type { PageType, Action, FullizeAction, Page  } from '@chat-tutor/shared'
 import type { BlockResolver } from './blockParser'
 
 export type RunGGBScriptAction = Action<{ content: string }, 'run-ggbscript'>
+
+export type GGBPage = Page<RunGGBScriptAction, PageType.GGB>
 
 export const ggbBlockResolver: BlockResolver = ({ page, content }, emit) => {
   const action: FullizeAction<RunGGBScriptAction> = {

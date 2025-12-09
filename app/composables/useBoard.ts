@@ -1,10 +1,10 @@
 import type { CanvasPage } from '@chat-tutor/canvas'
 import type { BaseForm, FormType, FullAction } from '@chat-tutor/shared'
-import type { FormCreationAction, PageCreationAction, PageNoteAction, MermaidPage, MermaidPageAction } from '@chat-tutor/agent'
+import type { FormCreationAction, PageCreationAction, PageNoteAction, MermaidPage, MermaidPageAction, GGBPage } from '@chat-tutor/agent'
 
 import '@dsl/math'
 
-export type Page = CanvasPage | MermaidPage
+export type Page = CanvasPage | MermaidPage | GGBPage
 
 export type ActionHandler = (action: FullAction) => void
 
@@ -16,6 +16,7 @@ export const useBoard = () => {
   const forms = ref<BaseForm<FormType>[]>([])
 
   const loadPage = (p: Page) => {
+    console.log('loadPage', p)
     currentPages.value.push(p)
     page.value = p.id!
   }

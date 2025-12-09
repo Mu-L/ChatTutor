@@ -1,4 +1,4 @@
-import type { Action, FullAction, Page } from '@chat-tutor/shared'
+import { PageType, type Action, type FullAction, type Page } from '@chat-tutor/shared'
 import type { PageCreationAction } from '@chat-tutor/agent'
 import type { MermaidPage } from './mermaid'
 import { mermaidBlockResolver } from './mermaid'
@@ -29,11 +29,23 @@ const blockStart = /^```\s*(mermaid|note|ggbscript)\s*\[([^\]\s|;]+)(?:;([^\]]+)
 const blockEnd = /^```[\t ]*(?:\r?\n)?/
 
 export const createBlockParser = ({ pages, emit, emitText }: BlockParserOptions) => {
-  const blockResolvers = new Map<string, BlockResolver>()
+  const blockResolvers = new Map<string, {
+    resolver: BlockResolver
+    pageType: PageType
+  }>()
 
-  blockResolvers.set('mermaid', mermaidBlockResolver)
-  blockResolvers.set('note', noteBlockResolver)
-  blockResolvers.set('ggbscript', ggbBlockResolver)
+  blockResolvers.set('mermaid', {
+    resolver: mermaidBlockResolver,
+    pageType: PageType.MERMAID,
+  })
+  blockResolvers.set('note', {
+    resolver: noteBlockResolver,
+    pageType: PageType.TEXT,
+  })
+  blockResolvers.set('ggbscript', {
+    resolver: ggbBlockResolver,
+    pageType: PageType.GGB,
+  })
   let buffer = ''
   // TODO: extend to note and code etc...
   let blockMeta: BlockMeta | null = null
@@ -119,11 +131,11 @@ export const createBlockParser = ({ pages, emit, emitText }: BlockParserOptions)
       return
     }
     // Handle mermaid block
-    const resolver = blockResolvers.get(block.type)
+    const { resolver, pageType } = blockResolvers.get(block.type)!
     if (!resolver) {
       return blockMeta = null
     }
-    const page = ensurePage(block.page, block.type, block.title) as MermaidPage
+    const page = ensurePage(block.page, pageType, block.title)
     resolver({ page, content: trimmedContent }, emit)
     blockMeta = null
   }

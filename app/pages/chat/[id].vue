@@ -56,21 +56,23 @@ onMounted(() => {
 
 <template>
   <div class="flex pt-10 md:pt-0 flex-col md:flex-row w-full h-full overflow-hidden">
-    <div class="flex flex-1 flex-col h-full items-center justify-center overflow-hidden min-w-0 p-5 gap-2">
-      <div class="flex flex-row w-full h-full gap-1 h-50 md:h-130">
+    <div class="flex flex-1 flex-col h-full items-center overflow-hidden min-w-0 p-5 gap-2">
+      <div class="flex flex-row w-full flex-1 gap-1 min-h-0">
         <Pages
           :pages="currentPages"
           :current-page="page!"
         />
       </div>
-      <div class="w-full h-20 md:h-auto max-w-screen-md justify-center flex flex-col gap-5">
+      <div class="w-full max-w-screen-md flex-shrink-0 flex justify-center">
         <PagesPreview
           :pages="currentPages"
           @select="(id) => page = id"
         />
       </div>
     </div>
-    <div class="flex flex-col h-screen max-h-screen bg-gray-200 dark:bg-gray-800 w-full md:w-100 p-3 shadow-lg flex-shrink-0">
+    <div
+      class="flex flex-col h-screen max-h-screen bg-gray-200 dark:bg-gray-800 w-full md:w-100 p-3 shadow-lg flex-shrink-0"
+    >
       <Chat
         ref="promptAreaRef"
         v-model:input="input"
