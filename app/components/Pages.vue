@@ -28,25 +28,39 @@ const areaClasses = 'size-full shadow-sm dark:text-gray-200 bg-gray-100 dark:bg-
 <template>
   <div class="size-full flex flex-row gap-2">
     <div
-      v-for="page in pages"
-      v-show="page.id === currentPage"
-      :key="page.id"
-      :class="areaClasses + ' ' + (notes.length > 0 ? 'w-5/7' : 'w-full')"
-      class="h-full"
-    >
-      <div
-        v-if="page.type === PageType.MERMAID"
-        class="size-full"
-      >
-        <MermaidPage :page="page" />
-      </div>
-    </div>
-    <div
-      v-if="notes.length > 0"
       :class="areaClasses"
       class="w-2/7 h-full markdown p-3 text-sm overflow-y-auto"
     >
+      <h3
+        class="text-lg font-bold text-gray-500 dark:text-gray-400 mb-2 border-b border-gray-300 dark:border-gray-700 pb-2"
+      >
+        Notes
+      </h3>
       <MarkdownRender :content="notes.join('\n\n')" />
     </div>
+    <template
+      v-for="page in pages"
+      :key="page.id"
+    >
+      <!-- Mermaid pages use v-show to preserve state -->
+      <div
+        v-if="page.type === PageType.MERMAID"
+        v-show="page.id === currentPage"
+        :class="areaClasses"
+        class="h-full w-5/7"
+      >
+        <MermaidPage :page="page" class="w-full"/>
+      </div>
+      <!-- GGB pages use v-if because GeoGebra needs visible container to initialize -->
+      <div
+        v-if="page.type === PageType.GGB && page.id === currentPage"
+        :class="areaClasses"
+        class="h-full w-5/7"
+      >
+        <Suspense>
+          <GGBPage :page="page" class="w-full"/>
+        </Suspense>
+      </div>
+    </template>
   </div>
 </template>
