@@ -24,6 +24,7 @@
     "@chat-tutor/canvas": "workspace:*",
     "@chat-tutor/mermaid": "workspace:*",
     "@chat-tutor/shared": "workspace:*",
+    "@chat-tutor/geogebra-applet": "workspace:*",
     "@dsl/knowledge": "workspace:*",
     "@dsl/math": "workspace:*",
     "@dsl/renderer-core": "workspace:*",

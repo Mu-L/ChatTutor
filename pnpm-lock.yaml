@@ -20,6 +20,9 @@ importers:
       '@chat-tutor/canvas':
         specifier: workspace:*
         version: link:packages/canvas
+      '@chat-tutor/geogebra-applet':
+        specifier: workspace:*
+        version: link:packages/geogebra
       '@chat-tutor/mermaid':
         specifier: workspace:*
         version: link:packages/mermaid
@@ -409,6 +412,8 @@ importers:
         specifier: ^1.12.0
         version: 1.12.0
 
+  packages/geogebra: {}
+
   packages/mermaid:
     dependencies:
       '@chat-tutor/shared':
@@ -420,8 +425,6 @@ importers:
       mermaid:
         specifier: ^11.12.1
         version: 11.12.1
-
-  packages/pkg: {}
 
   packages/shared:
     dependencies:

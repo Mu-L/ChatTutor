@@ -14,6 +14,9 @@ export default defineNuxtConfig({
       title: 'ChatTutor — 智能对话式辅助教学',
       titleTemplate: '%s · ChatTutor',
       htmlAttrs: { lang: 'zh-CN' },
+      script: [
+        { src: './deployggb.js', type: 'text/javascript', defer: true },
+      ],
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
