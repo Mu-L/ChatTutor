@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Message, GGBMessage } from '#shared/types'
+import type { Message, GGBMessage, SetMermaidMessage, PlanMessage } from '#shared/types'
 import { messageIcons } from '../utils/message-icons'
 
 const { message } = defineProps<{
@@ -11,8 +11,6 @@ const page = inject<Ref<string | null>>('page')!
 const content = computed(() => {
   if (['assistant', 'user'].includes(message.type)) {
     return (message as AssistantMessage).content
-  } else if (message.type === 'draw') {
-    return `Painted on ${message.page}`
   } else if (message.type === 'set-mermaid') {
     return message.running ? `Setting mermaid on ${message.page}...` : `Mermaid set on ${message.page}`
   } else if (message.type === 'note') {
@@ -40,6 +38,34 @@ const icon = computed(() => {
   return messageIcons[message.type]
 })
 
+// Check if message is expandable
+const expandable = computed(() => {
+  return ['plan', 'set-mermaid', 'ggb'].includes(message.type)
+})
+
+// Get expand content
+const expandContent = computed(() => {
+  if (message.type === 'plan') {
+    return (message as PlanMessage).expandContent
+  } else if (message.type === 'set-mermaid') {
+    return (message as SetMermaidMessage).expandContent
+  } else if (message.type === 'ggb') {
+    return (message as GGBMessage).expandContent
+  }
+  return undefined
+})
+
+const expandLanguage = computed(() => {
+  if (message.type === 'plan') {
+    return 'txt'
+  } else if (message.type === 'set-mermaid') {
+    return 'mermaid'
+  } else if (message.type === 'ggb') {
+    return 'ggb'
+  }
+  return undefined
+})
+
 const handleClick = () => {
   if (['page', 'draw', 'set-mermaid', 'note', 'ggb'].includes(message.type)) {
     page.value = (message as PageMessage | NoteMessage | SetMermaidMessage | DrawMessage | GGBMessage).page
@@ -50,5 +76,7 @@ const handleClick = () => {
 <template>
   <MessageBox :content="content" :icon="icon" :running="running" :images="message.type === 'user' ? message.images : []"
     :clickable="['page', 'draw', 'set-mermaid', 'note', 'ggb'].includes(message.type)" :is-markdown="isMarkdown"
-    :show-border="message.type === 'user'" @click="handleClick" />
+    :show-border="message.type === 'user'" :expandable="expandable" :expand-content="expandContent"
+    :expand-language="expandLanguage"
+    @click="handleClick" />
 </template>

@@ -101,6 +101,9 @@ export const createBlockParser = ({ pages, emit, emitText }: BlockParserOptions)
     buffer = keptText
   }
 
+  // Store plan content for expand
+  let planContent = ''
+
   // Try to parse plan tags
   const tryParsePlan = (): boolean => {
     // Check for <plan> start tag
@@ -116,6 +119,7 @@ export const createBlockParser = ({ pages, emit, emitText }: BlockParserOptions)
       // Remove the <plan> tag from buffer
       buffer = buffer.slice(planStartIdx + planStartTag.length)
       state = 'in_plan'
+      planContent = ''
       // Emit plan-start action
       emit({
         type: 'plan-start',
@@ -128,14 +132,16 @@ export const createBlockParser = ({ pages, emit, emitText }: BlockParserOptions)
     if (state === 'in_plan') {
       const planEndIdx = buffer.indexOf(planEndTag)
       if (planEndIdx !== -1) {
-        // Discard content inside plan (we don't need to display it)
+        // Save content inside plan for expand
+        planContent = buffer.slice(0, planEndIdx).trim()
         buffer = buffer.slice(planEndIdx + planEndTag.length)
         state = 'idle'
-        // Emit plan-end action
+        // Emit plan-end action with content
         emit({
           type: 'plan-end',
-          options: {},
+          options: { content: planContent },
         } as PlanEndAction)
+        planContent = ''
         return true
       }
     }

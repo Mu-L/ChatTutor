@@ -19,7 +19,7 @@ export type GGBEndAction = FullAction<{ page: string }, 'ggb-end'>
 
 // Plan actions
 export type PlanStartAction = Action<Record<string, never>, 'plan-start'>
-export type PlanEndAction = Action<Record<string, never>, 'plan-end'>
+export type PlanEndAction = Action<{ content: string }, 'plan-end'>
 
 export interface AgentOptions extends BaseAgentOptions {
   pages: Page[]

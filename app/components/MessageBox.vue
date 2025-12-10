@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core'
 import { MarkdownRender } from 'markstream-vue'
 
@@ -11,31 +12,81 @@ defineProps<{
   clickable?: boolean
   isMarkdown?: boolean
   showBorder?: boolean
+  expandable?: boolean
+  expandContent?: string
+  expandLanguage?: string 
 }>()
 
 const emit = defineEmits<{
   click: []
 }>()
+
+const expanded = ref(false)
+
+const toggleExpand = () => {
+  expanded.value = !expanded.value
+}
 </script>
 
 <template>
-  <div class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-2 py-1" :class="{
-    'cursor-pointer hover:opacity-80': clickable,
-    'border border-gray-300 dark:border-gray-700 rounded px-2': showBorder,
-  }" @click="clickable && emit('click')">
-    <div v-if="icon" class="flex-shrink-0 w-4 h-4 flex items-center justify-center icon-container" :class="{
-      'icon-pulse': running,
-    }">
-      <FontAwesomeIcon :icon="icon" />
+  <div class="flex flex-col">
+    <div
+      class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-2 py-1"
+      :class="{
+        'cursor-pointer hover:opacity-80': clickable,
+        'border border-gray-300 dark:border-gray-700 rounded px-2': showBorder,
+      }"
+      @click="clickable && emit('click')"
+    >
+      <div
+        v-if="icon"
+        class="flex-shrink-0 w-4 h-4 flex items-center justify-center icon-container"
+        :class="{
+          'icon-pulse': running,
+        }"
+      >
+        <FontAwesomeIcon :icon="icon" />
+      </div>
+      <div class="flex-1 min-w-0">
+        <ClientOnly>
+          <MarkdownRender
+            v-if="isMarkdown"
+            :content="content"
+            theme="dark"
+          />
+          <span v-else>{{ content }}</span>
+        </ClientOnly>
+      </div>
+      <div
+        v-if="images.length > 0"
+        class="flex flex-row gap-2 flex-shrink-0"
+      >
+        <img
+          v-for="image in images"
+          :key="image"
+          :src="image"
+          alt="Image"
+          class="w-16 h-16 rounded object-cover"
+        >
+      </div>
+      <button
+        v-if="expandable && expandContent"
+        class="flex-shrink-0 w-5 h-5 flex items-center justify-center text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+        @click.stop="toggleExpand"
+      >
+        <FontAwesomeIcon :icon="expanded ? faChevronUp : faChevronDown" />
+      </button>
     </div>
-    <div class="flex-1 min-w-0">
+    <div
+      v-if="expandable && expandContent && expanded"
+      class="ml-6 mt-1 p-2 bg-gray-100 dark:bg-gray-800 rounded text-xs text-gray-600 dark:text-gray-300 overflow-auto max-h-60"
+    >
       <ClientOnly>
-        <MarkdownRender v-if="isMarkdown" :content="content" theme="dark" />
-        <span v-else>{{ content }}</span>
+        <MarkdownRender
+          :content="`\`\`\` ${expandLanguage ?? 'txt'}\n${expandContent}\n\`\`\``"
+          theme="dark"
+        />
       </ClientOnly>
-    </div>
-    <div v-if="images.length > 0" class="flex flex-row gap-2 flex-shrink-0">
-      <img v-for="image in images" :key="image" :src="image" alt="Image" class="w-16 h-16 rounded object-cover">
     </div>
   </div>
 </template>

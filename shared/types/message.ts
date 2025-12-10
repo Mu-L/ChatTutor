@@ -1,5 +1,6 @@
 import type { AllAction } from './action'
-import type { PageType } from '@chat-tutor/shared'
+import type { PageType, FullizeAction } from '@chat-tutor/shared'
+import type { MermaidPageAction, RunGGBScriptAction } from '@chat-tutor/agent'
 import { v4 } from 'uuid'
 
 export type UserMessage = {
@@ -11,15 +12,10 @@ export type AssistantMessage = {
   type: 'assistant'
   content: string
 }
-export type DrawMessage = {
-  type: 'draw'
-  page: string
-  input?: string
-  result?: string
-}
 export type SetMermaidMessage = {
   type: 'set-mermaid'
   page: string
+  expandContent?: string
 }
 export type NoteMessage = {
   type: 'note'
@@ -33,14 +29,15 @@ export type PageMessage = {
 export type GGBMessage = {
   type: 'ggb'
   page: string
+  expandContent?: string
 }
 export type PlanMessage = {
   type: 'plan'
+  expandContent?: string
 }
 export type Message = (
   UserMessage
   | AssistantMessage
-  | DrawMessage
   | SetMermaidMessage
   | NoteMessage
   | PageMessage
@@ -115,35 +112,6 @@ export const createMessageResolver = (
           pageType: action.options.type as PageType,
           id: uuid(),
         })
-      } else if (action.type === 'set-mermaid') {
-        // Check if there's already a running mermaid message for this page
-        const pageId = action.page!
-        const existingMessage = findRunningMessage(pageId, 'set-mermaid')
-        if (existingMessage) {
-          // Update existing message, keep it running until mermaid-end
-          // Don't create a new message
-        } else {
-        // No running message, create a new one (for backward compatibility)
-          push({
-            type: 'set-mermaid',
-            page: pageId,
-            id: uuid(),
-          })
-        }
-      } else if ((action as any).type === 'draw-start') {
-        const drawAction = action as any
-        push({
-          type: 'draw',
-          page: drawAction.options.page!,
-          input: drawAction.options.input!,
-          id: uuid(),
-          running: true,
-        })
-      } else if ((action as any).type === 'draw-end') {
-        const drawAction = action as any
-        const messages = get()
-          ; (<Message>messages.at(-1)!).running = false
-          ; (<DrawMessage>messages.at(-1)!).result = drawAction.options.result!
       } else if (action.type === 'note-start') {
         const pageId = action.page!
         const messageId = uuid()
@@ -173,12 +141,30 @@ export const createMessageResolver = (
         }
         runningMessages.set(`mermaid:${pageId}`, message)
         push(message)
+      } else if (action.type === 'set-mermaid') {
+        // Update the running mermaid message with content for expand
+        const mermaidAction = action as FullizeAction<MermaidPageAction>
+        const pageId = mermaidAction.page!
+        const existingMessage = findRunningMessage(pageId, 'set-mermaid')
+        if (existingMessage) {
+          // Set expandContent from the action
+          (existingMessage as SetMermaidMessage).expandContent = mermaidAction.options.content
+        }
       } else if (action.type === 'mermaid-end') {
         const pageId = action.page!
         const message = findRunningMessage(pageId, 'set-mermaid')
         if (message) {
           message.running = false
           runningMessages.delete(`mermaid:${pageId}`)
+        }
+      } else if (action.type === 'run-ggbscript') {
+        // Update the running ggb message with content for expand
+        const ggbAction = action as FullizeAction<RunGGBScriptAction>
+        const pageId = ggbAction.page!
+        const existingMessage = findRunningMessage(pageId, 'ggb')
+        if (existingMessage) {
+          // Set expandContent from the action
+          (existingMessage as GGBMessage).expandContent = ggbAction.options.content
         }
       } else if (action.type === 'ggb-start') {
         const pageId = action.page!
@@ -214,6 +200,8 @@ export const createMessageResolver = (
           const msg = messages[i]
           if (msg && msg.type === 'plan' && msg.running === true) {
             msg.running = false
+              // Set expandContent from the action
+              ; (msg as PlanMessage).expandContent = action.options.content
             runningMessages.delete('plan')
             break
           }
