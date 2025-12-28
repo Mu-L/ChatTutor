@@ -19,7 +19,7 @@ export const createMessageResolver = (options: MessageResolverOptions) => {
           options.messages.push({
             type: 'agent',
             id: options.uuid(),
-            content: action.options.text,
+            content: '',
           })
         }
         ; (<AgentClientMessage>options.messages.at(-1)).content += action.options.text

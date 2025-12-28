@@ -3,5 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "description": "ChatTutor Monorepo",
-  "packageManager": "pnpm@10.14.0"
+  "scripts": {
+    "test": "vitest"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "vitest": "^4.0.16"
+  }
 }
