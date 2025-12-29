@@ -1,4 +1,4 @@
-import { BasePage } from "./page"
+import { BasePage } from './page'
 
 export interface Action<T, K extends string> {
   type: K

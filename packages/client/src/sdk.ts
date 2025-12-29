@@ -1,5 +1,5 @@
-import { app } from "."
-import { treaty } from "@elysiajs/eden"
+import { app } from '.'
+import { treaty } from '@elysiajs/eden'
 
 export type App = typeof app
 

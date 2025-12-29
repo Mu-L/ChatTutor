@@ -1,5 +1,5 @@
-import { AgentOptions, AgentInput } from "./types"
-import { createGateway, streamText } from "ai"
+import { AgentOptions, AgentInput } from './types'
+import { createGateway, streamText } from 'ai'
 
 export const createAgent = (options: AgentOptions) => {
   const gateway = createGateway({
@@ -13,7 +13,7 @@ export const createAgent = (options: AgentOptions) => {
       messages: [
         ...options.messages,
         {
-          role: "user", content: [
+          role: 'user', content: [
             { type: 'text', text: input.user },
             ...(input.images?.map(image => ({ type: 'image' as const, image: new URL(image) })) || []),
           ]

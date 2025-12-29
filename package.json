@@ -5,7 +5,7 @@
   "description": "ChatTutor Monorepo",
   "scripts": {
     "test": "vitest",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "dev": "pnpm --filter @chat-tutor/* dev",
     "dev:client": "pnpm --filter @chat-tutor/client dev",
     "dev:web": "pnpm --filter @chat-tutor/web dev",
@@ -19,6 +19,12 @@
   "packageManager": "pnpm@10.14.0",
   "dependencies": {
     "dotenv": "^17.2.3",
-    "vitest": "^4.0.16"
+    "eslint-plugin-vue": "^10.6.2",
+    "typescript-eslint": "^8.50.1",
+    "vitest": "^4.0.16",
+    "vue-eslint-parser": "^10.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.2"
   }
 }

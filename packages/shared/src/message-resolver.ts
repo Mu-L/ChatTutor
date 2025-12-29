@@ -1,5 +1,5 @@
-import { ClientAction } from "./action"
-import { AgentClientMessage, ClientMessage, isDelayedMessage, PageCreateClientMessage } from "./client-message"
+import { ClientAction } from './action'
+import { AgentClientMessage, ClientMessage, isDelayedMessage, PageCreateClientMessage } from './client-message'
 
 export interface MessageResolverOptions {
   messages: ClientMessage[]

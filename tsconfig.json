@@ -13,8 +13,8 @@
     "noEmit": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
-  "include": ["./**/*/src/*", "./**/*/src/**/*"],
+  "include": ["packages/**/*.ts", "packages/**/*/src/*", "packages/**/*/src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
