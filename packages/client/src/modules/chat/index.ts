@@ -1,7 +1,7 @@
 import { Elysia } from 'elysia'
 import { GetByIdModel, GetModel, GetStatusModel, GetStreamModel, PostModel } from './model'
 import { createChat, createChatStream, getChatById, getChats, getChatStatus } from './service'
-import { UserAction } from '@chat-tutor/shared'
+import { ClientMessage, Page, Status, UserAction } from '@chat-tutor/shared'
 
 export const chat = new Elysia({ prefix: '/chat' })
   .get('/', async ({ query }) => {
@@ -18,7 +18,15 @@ export const chat = new Elysia({ prefix: '/chat' })
   }, PostModel)
   .get('/:id', async ({ params }) => {
     const { id } = params
-    return await getChatById(id)
+    return await getChatById(id) as {
+      id: string
+      title: string
+      createdAt: Date
+      updatedAt: Date
+      status: Status
+      pages: Page[]
+      messages: ClientMessage[]
+    }
   }, GetByIdModel)
   .get('/:id/status', async ({ params }) => {
     const { id } = params

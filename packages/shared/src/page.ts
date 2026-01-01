@@ -19,3 +19,5 @@ export interface GGBPage extends BasePage {
 export interface MermaidPage extends BasePage {
   type: PageType.MERMAID
 }
+
+export type Page = GGBPage | MermaidPage

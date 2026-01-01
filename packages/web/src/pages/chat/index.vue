@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { ChatUI, ChatBoard, ChatPagination } from '#/components/chat'
+import { useCreateChatStore } from '#/utils/stores'
+
+const store = useCreateChatStore()
+
+if (store.prompt !== null || store.resources.length > 0) {
+  console.log(store.prompt, store.resources)
+  store.prompt = null
+  store.resources = []
+}
 </script>
 
 <template>
@@ -8,7 +17,7 @@ import { ChatUI, ChatBoard, ChatPagination } from '#/components/chat'
       <div class="flex flex-row h-5/7">
         <ChatBoard />
       </div>
-      <div class="flex flex-row h-2/7">
+      <div class="flex flex-row h-48">
         <ChatPagination />
       </div>
     </div>

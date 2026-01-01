@@ -2,18 +2,25 @@
 import { ref } from 'vue'
 import { PromptArea, type Resource } from '#/components/prompt-area'
 import { client } from '#/utils/client'
+import { useCreateChatStore } from '#/utils/stores'
+import { useRouter } from 'vue-router'
 
 const input = ref('')
 const resources = ref<Resource[]>([])
 const running = ref(false)
+
+const store = useCreateChatStore()
+const router = useRouter()
 
 const handleSend = async (message: string, attachments: Resource[]) => {
   const { data, error } = await client.chat.post({})
   if (error) {
     return
   }
+  store.prompt = message
+  store.resources = attachments
   const { id } = data
-  console.log(id)
+  router.push(`/chat/${id}`)
 }
 </script>
 
