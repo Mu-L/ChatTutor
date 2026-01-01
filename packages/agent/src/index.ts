@@ -34,6 +34,7 @@ export const createAgent = (options: AgentOptions) => {
         ...(images?.map(image => ({ type: 'image' as const, image: new URL(image) })) || []),
       ]
     })
+    const savedContext = structuredClone(options.messages)
     const { textStream, response } = streamText({
       model: gateway(options.model),
       messages: options.messages,
@@ -49,8 +50,7 @@ export const createAgent = (options: AgentOptions) => {
       options: {},
     })
     const messages = (await response).messages
-    options.messages.push(...messages)
-    console.log(options.messages.length)
+    options.messages.push(...savedContext, ...messages)
   }
 }
 

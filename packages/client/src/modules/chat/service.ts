@@ -119,7 +119,6 @@ export const createChatStream = () => {
           emit,
           images: [],
         })
-        console.log(agentContext.length)
       }
     },
   }
