@@ -40,7 +40,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <SidebarGroup>
+  <SidebarGroup v-if="items.length > 0">
     <SidebarGroupLabel>
       {{ t('common.recent') }}
     </SidebarGroupLabel>
