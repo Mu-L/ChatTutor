@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { Sidebar, SidebarContent, SidebarProvider, SidebarTrigger, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@chat-tutor/ui'
+import { Sidebar, SidebarContent, SidebarProvider, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@chat-tutor/ui'
 import SidebarChatHistory from './sidebar-chat-history.vue'
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faCog, faBars, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const router = useRouter()
 const open = ref(false)
 watch(router.currentRoute, (route) => {
@@ -34,18 +36,22 @@ watch(router.currentRoute, (route) => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton as-child tooltip="New Chat" @click="router.push('/')">
+                <SidebarMenuButton as-child :tooltip="t('common.newChat')" @click="router.push('/')">
                   <div class="size-4">
                     <FontAwesomeIcon :icon="faPlus" />
-                    <span>New Chat</span>
+                    <span>
+                      {{ t('common.newChat') }}
+                    </span>
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton as-child tooltip="Settings" @click="router.push('/settings')">
+                <SidebarMenuButton as-child :tooltip="t('settings.title')" @click="router.push('/settings')">
                   <div>
                     <FontAwesomeIcon :icon="faCog" />
-                    <span>Settings</span>
+                    <span>
+                      {{ t('settings.title') }}
+                    </span>
                   </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>

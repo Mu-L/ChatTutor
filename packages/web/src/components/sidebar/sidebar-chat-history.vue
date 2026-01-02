@@ -2,6 +2,9 @@
 import { client } from '#/utils/client'
 import { SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@chat-tutor/ui'
 import { onUnmounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 interface Item {
   title: string
@@ -37,7 +40,9 @@ onUnmounted(() => {
 
 <template>
   <SidebarGroup>
-    <SidebarGroupLabel>Recent</SidebarGroupLabel>
+    <SidebarGroupLabel>
+      {{ t('common.recent') }}
+    </SidebarGroupLabel>
     <SidebarGroupContent class="overflow-y-auto">
       <SidebarMenu>
         <SidebarMenuItem
