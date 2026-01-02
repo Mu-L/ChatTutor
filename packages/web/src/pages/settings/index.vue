@@ -6,9 +6,9 @@ import SettingsItem from '#/components/settings/SettingsItem.vue'
 import { computed } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faRobot, faWindowMaximize } from '@fortawesome/free-solid-svg-icons'
-
+import { modelProviders } from '#/store/settings'
 const settingsStore = useSettingsStore()
-const { baseURL, apiKey, agentModel, titleModel, colorMode } = storeToRefs(settingsStore)
+const { baseURL, apiKey, agentModel, titleModel, colorMode, modelProvider, modelProviderDetails } = storeToRefs(settingsStore)
 
 const { t, locale, availableLocales } = useI18n()
 
@@ -23,6 +23,13 @@ const localeOptions = computed(() => availableLocales.map(loc => ({
   label: t(`settings.interface.languageOptions.${loc}`),
   value: loc
 })))
+
+const modelProviderOptions = computed(() => {
+  return Object.entries(modelProviders).map(([key, provider]) => ({
+    label: provider.label,
+    value: key
+  }))
+})
 
 const sectionTitleClass = 'font-semibold text-muted-foreground border-b pt-3 pb-2';
 
@@ -43,7 +50,11 @@ const sectionTitleClass = 'font-semibold text-muted-foreground border-b pt-3 pb-
           {{ t('settings.models.title') }}
         </h2>
 
-        <SettingsItem :label="t('settings.models.baseURL')" placeholder="https://api.openai.com/v1" v-model="baseURL" />
+        <SettingsItem :label="t('settings.models.provider')" type="select" :options="modelProviderOptions"
+          v-model="modelProvider" />
+
+        <SettingsItem :label="t('settings.models.baseURL')" :placeholder="modelProviderDetails.baseURL"
+          v-model="baseURL" />
 
         <SettingsItem :label="t('settings.models.apiKey')" type="password"
           :description="t('settings.models.apiKeyDescription')" v-model="apiKey" />

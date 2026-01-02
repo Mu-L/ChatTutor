@@ -21,7 +21,8 @@
       "apiKeyDescription": "The information is stored in your browser's local storage.",
       "agentModel": "Agent Model",
       "titleModel": "Title Model",
-      "titleModelDescription": "Optional, default to the same as Agent Model."
+      "titleModelDescription": "Optional, default to the same as Agent Model.",
+      "provider": "Provider"
     },
     "interface": {
       "title": "Interface",

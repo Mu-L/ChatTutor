@@ -16,7 +16,7 @@ export const modelProviders = {
   },
   deepseek: {
     label: "DeepSeek",
-    baseURL: "https://api.deepseek.ai/v1",
+    baseURL: "https://api.deepseek.com/v1",
   },
 };
 
