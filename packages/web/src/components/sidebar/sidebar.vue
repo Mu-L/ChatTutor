@@ -42,11 +42,11 @@ watch(router.currentRoute, (route) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton as-child tooltip="Settings">
-                  <a href="/settings">
+                <SidebarMenuButton as-child tooltip="Settings" @click="router.push('/settings')">
+                  <div>
                     <FontAwesomeIcon :icon="faCog" />
                     <span>Settings</span>
-                  </a>
+                  </div>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

@@ -31,6 +31,10 @@
         "light": "Light",
         "dark": "Dark",
         "system": "Follow system"
+      },
+      "languageOptions": {
+        "en": "English",
+        "zh": "Simplified Chinese (简体中文)"
       }
     }
   },
