@@ -43,11 +43,9 @@ onMounted(async () => {
   <template v-if="loading">
     <Loading />
   </template>
-  <div
-    v-else
-    class="size-full flex flex-row overflow-hidden"
+  <div v-else class="size-full flex flex-row overflow-y-auto flex-wrap max-md:pb-40"
   >
-    <div class="w-5/7 flex flex-col h-full py-2 gap-2 overflow-hidden">
+    <div class="max-md:mx-2 w-full md:w-5/7 flex flex-col md:h-full py-2 gap-2 overflow-hidden">
       <div class="flex flex-row flex-1 min-h-0 overflow-hidden">
         <ChatBoard :pages="pages" :current="currentPage" />
       </div>
@@ -58,7 +56,7 @@ onMounted(async () => {
         />
       </div>
     </div>
-    <div class="w-2/7 h-full overflow-hidden">
+    <div class="max-md:mx-2 w-full md:w-2/7 md:h-full overflow-hidden">
       <ChatUI
         v-model:messages="messages"
         :running="running"

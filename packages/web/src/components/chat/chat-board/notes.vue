@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
   <div class="size-full flex flex-col gap-2">
-    <span class="text-md font-bold text-gray-500 dark:text-gray-400">
+    <span class="text-md font-bold text-gray-500 dark:text-gray-400 max-md:text-right max-md:pr-1">
       {{ t('chat.notes') }}
     </span>
     <div class="flex flex-col w-full overflow-y-auto">

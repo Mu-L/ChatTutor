@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { client } from '#/utils/client'
-import { SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@chat-tutor/ui'
-import { onUnmounted, ref } from 'vue'
+import { SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, Spinner } from '@chat-tutor/ui'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 
@@ -14,8 +14,13 @@ interface Item {
 }
 
 const items = ref<Item[]>([])
+const fetching = ref(false)
 
 const fetchItems = async () => {
+  if (fetching.value) {
+    return
+  }
+  fetching.value = true
   const { data, error } = await client.chat.get({
     query: {
       limit: 15,
@@ -30,19 +35,30 @@ const fetchItems = async () => {
     url: `/chat/${item.id}`,
     date: item.createdAt?.toLocaleDateString() ?? '',
   }))
+  fetching.value = false
 }
 
-const interval = setInterval(fetchItems, 1000)
+const loading = computed(() => {
+  return fetching.value && items.value.length === 0
+});
+
+// const interval = ref<number | null>(null)
+
+onMounted(() => {
+  fetchItems()
+  // interval.value = window.setInterval(fetchItems, 5000)
+})
 
 onUnmounted(() => {
-  clearInterval(interval)
+  // if (interval.value !== null) clearInterval(interval.value)
 })
 </script>
 
 <template>
-  <SidebarGroup v-if="items.length > 0">
+  <SidebarGroup>
     <SidebarGroupLabel>
       {{ t('common.recent') }}
+      <Spinner v-if="loading" class="ml-2" />
     </SidebarGroupLabel>
     <SidebarGroupContent class="overflow-y-auto">
       <SidebarMenu>

@@ -14,7 +14,7 @@ console.log(props)
 
 <template>
   <Card class="size-full">
-    <CardContent class="size-full">
+    <CardContent class="size-full max-md:px-2">
       <div class="size-full flex flex-row gap-2">
         <div class="flex flex-col w-1/4">
           <Notes

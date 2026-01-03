@@ -95,7 +95,8 @@ onUnmounted(() => {
         <Messages v-model:messages="messages" />
       </div>
     </div>
-    <div class="w-full p-2 h-48 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
+    <div
+      class="max-md:fixed max-md:bottom-0 max-md:left-0 max-md:h-32 max-md:bg-background w-full p-2 h-48 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
       <PromptArea ref="promptAreaRef" v-model:input="input" v-model:resources="resources" :running="running"
         @send="handleSend" />
     </div>

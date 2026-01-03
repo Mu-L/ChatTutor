@@ -39,7 +39,7 @@ const sectionTitleClass = 'font-semibold text-muted-foreground border-b pt-3 pb-
   <div class="p-5 overflow-y-auto h-full">
     <div class="max-w-2xl mx-auto">
 
-      <h1 class="text-3xl font-extrabold lg:text-4xl mb-2 pt-3">
+      <h1 class="text-2xl font-extrabold lg:text-4xl mb-2 pt-3 max-md:pl-14 max-md:pt-1">
         {{ t('settings.title') }}
       </h1>
 

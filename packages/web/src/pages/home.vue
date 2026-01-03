@@ -6,6 +6,7 @@ import { client } from '#/utils/client'
 import { useCreateChatStore } from '#/utils/stores'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useSidebar } from '@chat-tutor/ui'
 
 const input = ref('')
 const resources = ref<Resource[]>([])
@@ -39,11 +40,13 @@ const greeting = computed(() => {
   const time = getTime()
   return t('home.title', { time: t(`home.greeting.${time}`) })
 })
+
+const { isMobile } = useSidebar()
 </script>
 
 <template>
   <div class="size-full flex flex-col p-5">
-    <div class="flex flex-row w-full justify-start items-center gap-1">
+    <div class="flex flex-row w-full justify-start items-center gap-1" :class="{ 'ml-10': isMobile }">
       <img
         src="/logo.png"
         alt="ChatTutor"
