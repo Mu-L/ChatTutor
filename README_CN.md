@@ -68,6 +68,102 @@ ChatTutor 有效地解决了这一问题。它将现实教育场景中的各种�
   </tr>
 </table>
 
+## 快速开始
+
+<details><summary>环境变量</summary>
+
+### 数据库配置
+- `DATABASE_URL`: PostgreSQL 连接字符串
+
+### 服务器与客户端
+- `VITE_API_BASE_URL`: API 服务器的基础 URL（例如：`http://localhost:8002`）
+- `CLINET_BASE_URL`: 客户端应用程序的基础 URL（例如：`http://localhost:8001`）
+
+### AI 配置
+- `MODEL_API_KEY`: AI 服务的 API 密钥（例如：`your_api_key_here`）
+- `MODEL_BASE_URL`: AI 服务的基础 URL（可选，默认为 OpenAI）
+- `AGENT_MODEL`: 与用户聊天的主代理模型（例如：`gpt-4`）
+- `AGENT_MODEL_PROVIDER`: 模型提供商（选项：参考 [提供商枚举](#provider-enum)）
+- `TITLE_MODEL`: 用于生成聊天标题的模型（可选，默认为 `AGENT_MODEL`）
+- `TITLE_MODEL_PROVIDER`: 标题生成的模型提供商（可选，默认为 `AGENT_MODEL_PROVIDER`，参考 [提供商枚举](#provider-enum)）
+
+#### 提供商枚举
+- OpenAI: `openai`
+- Anthropic: `anthropic`
+- DeepSeek: `deepseek`
+
+### OSS 配置
+- `OSS_ENDPOINT`: OSS 端点 URL（如果未设置，图片上传将不可用）
+- `OSS_ACCESS_KEY`: OSS 访问密钥
+- `OSS_SECRET_KEY`: OSS 密钥
+- `OSS_BUCKET`: OSS 存储桶名称
+- `OSS_REGION`: OSS 区域
+
+</details>
+
+<details><summary>使用 Docker 运行</summary>
+
+### 环境要求
+
+> - Docker >= 24.0.0
+> - Docker Compose >= 2.22.0
+
+### 安装步骤
+
+```bash
+git clone https://github.com/HugeCatLab/ChatTutor.git
+cd ChatTutor
+cp .env.example .env
+```
+
+### 运行
+
+```bash
+cd docker
+docker compose up -d
+```
+</details>
+
+<details><summary>使用 Node & Bun 运行</summary>
+
+### 环境要求
+
+> - Node.js >= 20
+> - Bun >= 1.2
+> - pnpm >= 9.1.0
+
+### 安装步骤
+
+```bash
+git clone https://github.com/HugeCatLab/ChatTutor.git
+cd ChatTutor
+pnpm i
+```
+
+### 开发模式
+
+```bash
+pnpm dev
+```
+
+或者：
+
+```bash
+pnpm client:dev
+pnpm web:dev
+```
+
+### 构建
+
+```bash
+pnpm build
+pnpm client:start
+pnpm web:start
+```
+
+</details>
+
+
 ## Tech Stacks
 
 - [Geogebra](https://www.geogebra.org/)

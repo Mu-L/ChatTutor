@@ -68,6 +68,102 @@ ChatTutor effectively solves this problem by bringing all the teaching tools use
   </tr>
 </table>
 
+## Quick Start
+
+<details><summary>Environment Variables</summary>
+
+### Database Configuration
+- `DATABASE_URL`: PostgreSQL connection string
+
+### Server & Client
+- `VITE_API_BASE_URL`: Base URL for the API server (e.g., `http://localhost:8002`)
+- `CLINET_BASE_URL`: Base URL for the client application (e.g., `http://localhost:8001`)
+
+### AI Configuration
+- `MODEL_API_KEY`: Your API key for the AI service (e.g., `your_api_key_here`)
+- `MODEL_BASE_URL`: Base URL for the AI service (optional, defaults to OpenAI)
+- `AGENT_MODEL`: Model for the main agent that chats with users (e.g., `gpt-4`)
+- `AGENT_MODEL_PROVIDER`: Model provider (options: refer to [Provider Enum](#provider-enum))
+- `TITLE_MODEL`: Model for generating chat titles (optional, defaults to `AGENT_MODEL`)
+- `TITLE_MODEL_PROVIDER`: Model provider for title generation (optional, defaults to `AGENT_MODEL_PROVIDER`, refer to [Provider Enum](#provider-enum))
+
+#### Provider Enum
+- OpenAI: `openai`
+- Anthropic: `anthropic`
+- DeepSeek: `deepseek`
+
+### OSS Configuration
+- `OSS_ENDPOINT`: OSS endpoint URL (if not set, image upload will be unavailable)
+- `OSS_ACCESS_KEY`: OSS access key
+- `OSS_SECRET_KEY`: OSS secret key
+- `OSS_BUCKET`: OSS bucket name
+- `OSS_REGION`: OSS region
+
+</details>
+
+<details><summary>Run with Docker</summary>
+
+### Environment
+
+> - Docker >= 24.0.0
+> - Docker Compose >= 2.22.0
+
+### Setup
+
+```bash
+git clone https://github.com/HugeCatLab/ChatTutor.git
+cd ChatTutor
+cp .env.example .env
+```
+
+### Run
+
+```bash
+cd docker
+docker compose up -d
+```
+</details>
+
+<details><summary>Run with Node & Bun</summary>
+
+### Environment
+
+> - Node.js >= 20
+> - Bun >= 1.2
+> - pnpm >= 9.1.0
+
+### Setup
+
+```bash
+git clone https://github.com/HugeCatLab/ChatTutor.git
+cd ChatTutor
+pnpm i
+```
+
+### Development
+
+```bash
+pnpm dev
+```
+
+Or:
+
+```bash
+pnpm client:dev
+pnpm web:dev
+```
+
+### Build
+
+```bash
+pnpm build
+pnpm client:start
+pnpm web:start
+```
+
+</details>
+
+
 ## Tech Stacks
 
 - [Geogebra](https://www.geogebra.org/)
