@@ -4,7 +4,8 @@
     "newChat": "New Chat",
     "recent": "Recent",
     "empty": "No content yet",
-    "desc": "Intelligent conversational teaching assistant"
+    "desc": "Intelligent conversational teaching assistant",
+    "backHome": "Back to Home"
   },
   "home": {
     "greeting": {
@@ -80,5 +81,19 @@
     "send": "Send",
     "placeholder": "Type your message here...",
     "uploadImage": "Upload Image"
+  },
+  "error": {
+    "404": {
+      "title": "Page Not Found",
+      "message": "Sorry, the page you are looking for does not exist."
+    },
+    "error": {
+      "title": "Error",
+      "message": "An unexpected error has occurred."
+    },
+    "chat": {
+      "title": "Failed to Load Chat",
+      "message": "An error occurred while loading the chat."
+    }
   }
 }

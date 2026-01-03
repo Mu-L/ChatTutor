@@ -4,7 +4,8 @@
     "newChat": "新聊天",
     "recent": "最近",
     "empty": "暂无内容",
-    "desc": "智能对话式辅助教学"
+    "desc": "智能对话式辅助教学",
+    "backHome": "返回首页"
   },
   "home": {
     "greeting": {
@@ -80,5 +81,19 @@
     "send": "发送",
     "placeholder": "输入消息...",
     "uploadImage": "上传图片"
+  },
+  "error": {
+    "404": {
+      "title": "页面未找到",
+      "message": "抱歉，您访问的页面不存在。"
+    },
+    "error": {
+      "title": "错误",
+      "message": "发生了意外错误。"
+    },
+    "chat": {
+      "title": "聊天加载失败",
+      "message": "在加载聊天时发生了错误。"
+    }
   }
 }
