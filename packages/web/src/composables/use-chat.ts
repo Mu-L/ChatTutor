@@ -53,7 +53,7 @@ export const useChat = (id: string) => {
     if (error) {
       router.push({
         name: 'error',
-        params: { type: 'chat', message: error.value.toString() },
+        params: { type: 'chat', message: error.value.message },
       })
       return
     }
