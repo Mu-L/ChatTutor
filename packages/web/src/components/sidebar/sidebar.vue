@@ -16,16 +16,9 @@ const sidebarOpen = computed(() => {
   return isMobile.value ? openMobile.value : open.value
 })
 
-const setSidebarOpen = (value: boolean) => {
-  if (isMobile.value) {
-    setOpenMobile(value)
-  } else {
-    setOpen(value)
-  }
-}
-
 watch(router.currentRoute, (route) => {
-  setSidebarOpen(route.path === '/')
+  setOpenMobile(false)
+  setOpen(route.path === '/')
 }, { immediate: true })
 </script>
 
