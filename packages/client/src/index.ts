@@ -2,9 +2,10 @@ import { Elysia } from 'elysia'
 import { chat } from './modules/chat'
 import { resource } from './modules/resource'
 import { corsMiddleware } from './middlewares/cors'
-
+import { globalErrorHandler } from './middlewares/error-handler'
 
 export const app = new Elysia()
+  .use(globalErrorHandler)
   .use(chat)
   .use(resource)
   .use(corsMiddleware)
