@@ -43,7 +43,7 @@
     },
     "alert": {
       "keyRequired": "Model API Key has not been configured yet",
-      "pleaseSetKey": "Please set your own API key and models in the settings before using."
+      "pleaseSetKey": "Please set your own API key and models in the settings before use."
     }
   },
   "message": {

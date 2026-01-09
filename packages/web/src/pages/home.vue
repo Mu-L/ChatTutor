@@ -84,7 +84,7 @@ const showSettingsAlert = computed(() => {
           @send="handleSend"
         />
       </div>
-      <Alert class="mt-3" v-if="showSettingsAlert">
+      <Alert class="mt-4 max-w-md" v-if="showSettingsAlert">
         <FontAwesomeIcon :icon="faWarning" />
         <AlertTitle>
           {{ t('settings.alert.keyRequired') }}
